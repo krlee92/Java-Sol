@@ -1,0 +1,5 @@
++"" - 데이터를 String으로 만듬
+
+substring - String데이터 부분표시
+
+s += String.format("201511%02d", i); String데이터 폼 표시방법

@@ -1,0 +1,11 @@
+https://openweathermap.org/ 날씨
+
+https://www.data.go.kr/index.do 공공데이터
+
+http://data.seoul.go.kr/dataList/OA-2219/S/1/datasetView.do 서울시
+
+https://www.weather.go.kr/weather/lifenindustry/sevice_rss.jsp?sido=2800000000&gugun=2818500000&dong=2818585000&x=22&y=4 기상청
+
+dev.kakao.com
+
+dev.naver.com
