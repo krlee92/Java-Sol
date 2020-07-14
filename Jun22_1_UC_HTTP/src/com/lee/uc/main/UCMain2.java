@@ -18,16 +18,16 @@ import org.json.simple.parser.JSONParser;
 
 //https://dapi.kakao.com//v2/local/search/keyword.json?query=xxx&x=127&y=023867&radius=5000
 
-// À½½ÄÁ¡ ÀÔ·ÂÇÏ¸é ±ÙÃ³ À½½ÄÁ¡ Á¤º¸ ¶ß°Ô(ÇĞ¿ø ±ÙÃ³)
+// ìŒì‹ì  ì…ë ¥í•˜ë©´ ê·¼ì²˜ ìŒì‹ì  ì •ë³´ ëœ¨ê²Œ(í•™ì› ê·¼ì²˜) 
 public class UCMain2 {
 	public static void main(String[] args) {
 		
 		try {
 			Scanner k = new Scanner(System.in);
-			System.out.println("¹¹ : ");
+			System.out.println("ë­ : ");
 			String what = k.next();
 			
-			// ÇÑ±ÛÀ» ÀÎÅÍ³İ ÁÖ¼Ò¿¡ ¸Â´Â ÇüÅÂ·Î
+			// í•œê¸€ì„ ì¸í„°ë„· ì£¼ì†Œì— ë§ëŠ” í˜•íƒœë¡œ
 			what = URLEncoder.encode(what, "utf-8");
 			
 			String s = "https://dapi.kakao.com//v2/local/search/keyword.json";
@@ -37,7 +37,7 @@ public class UCMain2 {
 			URL u = new URL(s);
 			HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
 			huc.addRequestProperty("Authorization", "KakaoAK 80b818832ce2303ea5f03b9758428f1b");
-			// ÄÜ¼Ö¿¡ ÀüÃ¼ Ãâ·Â
+			// ì½˜ì†”ì— ì „ì²´ ì¶œë ¥
 			InputStream is = huc.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is, "utf-8");
 			BufferedReader br = new BufferedReader(isr);
@@ -49,7 +49,7 @@ public class UCMain2 {
 			JSONObject l = null;
 //			System.out.println(d.size());
 			
-			for (int i = 0; i < d.size(); i++) { // jsonarray¿¡ ÀÖ´Â »çÀÌÁî¸¸Å­ µ¹¸®±â
+			for (int i = 0; i < d.size(); i++) { // jsonarrayì— ìˆëŠ” ì‚¬ì´ì¦ˆë§Œí¼ ëŒë¦¬ê¸°
 				l = (JSONObject) d.get(i);
 				System.out.println(l.get("place_name"));
 				System.out.println(l.get("road_address_name"));
