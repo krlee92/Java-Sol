@@ -18,7 +18,7 @@ import org.json.simple.parser.JSONParser;
 
 //https://dapi.kakao.com//v2/local/search/keyword.json?query=xxx&x=127&y=023867&radius=5000
 
-// 음식점 입력하면 근처 음식점 정보 뜨게(학원 근처) 
+// 음식점 입력하면 근처 음식점 정보 뜨게(학원 근처) 카카오 제이슨 파싱 찾기
 public class UCMain2 {
 	public static void main(String[] args) {
 		
