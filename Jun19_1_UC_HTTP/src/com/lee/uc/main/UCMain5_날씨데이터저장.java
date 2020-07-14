@@ -12,17 +12,17 @@ import java.util.Date;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-// ³¯¾¾ ÇÁ·Î±×·¥
+// ë‚ ì”¨ í”„ë¡œê·¸ë¨
 
-// ÄÄÇ»ÅÍ´Â ÀüÀÚ±â°è
-// 		Àü±â°¡ Èå¸£´Â »óÅÂ¸¦ 1, ¾ÈÈå¸£´Â »óÅÂ¸¦ 0À¸·Î Ç¥Çö
-// ¸ğµç µ¥ÀÌÅÍ¸¦ 2Áø¼ö·Î ¹Ù²ã¼­ ÀúÀå => ÀÎÄÚµù(encoding)
-//		Àü ¼¼°èÀûÀ¸·Î ÁÖ·Â¹æ½Ä : utf-8
-//		ÇÑ±¹ Àü¿ë : euc-kr
+// ì»´í“¨í„°ëŠ” ì „ìê¸°ê³„
+// 		ì „ê¸°ê°€ íë¥´ëŠ” ìƒíƒœë¥¼ 1, ì•ˆíë¥´ëŠ” ìƒíƒœë¥¼ 0ìœ¼ë¡œ í‘œí˜„
+// ëª¨ë“  ë°ì´í„°ë¥¼ 2ì§„ìˆ˜ë¡œ ë°”ê¿”ì„œ ì €ì¥ => ì¸ì½”ë”©(encoding)
+//		ì „ ì„¸ê³„ì ìœ¼ë¡œ ì£¼ë ¥ë°©ì‹ : utf-8
+//		í•œêµ­ ì „ìš© : euc-kr
 //		MS : iso-8859-1
-// 2Áø¼ö¸¦ µ¥ÀÌÅÍ·Î ¿ø»óº¹±Í => µğÄÚµù(decoding)
+// 2ì§„ìˆ˜ë¥¼ ë°ì´í„°ë¡œ ì›ìƒë³µê·€ => ë””ì½”ë”©(decoding)
 
-public class UCMain5_³¯¾¾µ¥ÀÌÅÍÀúÀå {
+public class UCMain5_ë‚ ì”¨ë°ì´í„°ì €ì¥ {
 	public static void main(String[] args) {
 		BufferedWriter bw = null;
 
@@ -37,35 +37,35 @@ public class UCMain5_³¯¾¾µ¥ÀÌÅÍÀúÀå {
 			URL u = new URL(addr);
 			HttpURLConnection huc = (HttpURLConnection) u.openConnection();
 
-			InputStream is = huc.getInputStream();
+			InputStream is = huc.getInputStream(); // import java.io
 
 			// XML(eXtended Markup Language)
-			// µ¥ÀÌÅÍ¸¦ HTML¸ğ¾çÀ¸·Î Ç¥ÇöÇØ³õÀº°Å
-			// <hour> : ½ÃÀÛÅÂ±×
-			// ¸¼À½ : ÅØ½ºÆ®
-			// </temp> : Á¾·áÅÂ±×
+			// ë°ì´í„°ë¥¼ HTMLëª¨ì–‘ìœ¼ë¡œ í‘œí˜„í•´ë†“ì€ê±°
+			// <hour> : ì‹œì‘íƒœê·¸
+			// ë§‘ìŒ : í…ìŠ¤íŠ¸
+			// </temp> : ì¢…ë£Œíƒœê·¸
 
-			// ¹Ş¾Æ¿Â µ¥ÀÌÅÍ °¡°ø/Á¤¸® => parsing
-			// ±â»óÃ» µ¥ÀÌÅÍ Çü½Ä : XML => XML Parsing
-			// XML Parsing : ±âº» JAVA¿¡ ¾øÀ½
+			// ë°›ì•„ì˜¨ ë°ì´í„° ê°€ê³µ/ì •ë¦¬ => parsing
+			// ê¸°ìƒì²­ ë°ì´í„° í˜•ì‹ : XML => XML Parsing
+			// XML Parsing : ê¸°ë³¸ JAVAì— ì—†ìŒ
 			XmlPullParserFactory xppf = XmlPullParserFactory.newInstance();
 			XmlPullParser xpp = xppf.newPullParser();
 			xpp.setInput(is, "utf-8");
 
 			String tagName = null;
-			int what = xpp.getEventType(); // ÇöÀç º¸°í ÀÖ´Â°Ô ¹¹ÀÓ?
+			int what = xpp.getEventType(); // í˜„ì¬ ë³´ê³  ìˆëŠ”ê²Œ ë­ì„?
 			while (what != XmlPullParser.END_DOCUMENT) {
 				if (what == XmlPullParser.START_TAG) {
-					// System.out.println(xpp.getName()); //ÅÂ±×¸í¸¸ ¶ç¿ì±â
+					// System.out.println(xpp.getName()); //íƒœê·¸ëª…ë§Œ ë„ìš°ê¸°
 					tagName = xpp.getName();
 				} else if (what == XmlPullParser.TEXT) {
-					// System.out.println(xpp.getText()); //ÅÂ±×¸»°í ¾Ë¸ÍÀÌ ¶ç¿ì±â
+					// System.out.println(xpp.getText()); //íƒœê·¸ë§ê³  ì•Œë§¹ì´ ë„ìš°ê¸°
 					if (tagName.equals("hour")) {
 						if (xpp.getText().equals("3")) {
-							break; // ±× ³¯ÀÚ µ¥ÀÌÅÍ¸¸ ÀúÀåÇÏ·Á¸é »õº®3½Ã ÀÌÀü µ¥ÀÌÅÍ±îÁö¸¸ ÀúÀå
+							break; // ê·¸ ë‚ ì ë°ì´í„°ë§Œ ì €ì¥í•˜ë ¤ë©´ ìƒˆë²½3ì‹œ ì´ì „ ë°ì´í„°ê¹Œì§€ë§Œ ì €ì¥
 						}
 						bw.write(when +",");
-						bw.write(xpp.getText()  +","); // ½Ã°£¸¸ ¶ß´Â°Í
+						bw.write(xpp.getText()  +","); // ì‹œê°„ë§Œ ëœ¨ëŠ”ê²ƒ
 					}else if (tagName.equals("temp")) {
 						bw.write(xpp.getText() + "" +",");
 					}else if (tagName.equals("wfKor")) {
@@ -73,9 +73,9 @@ public class UCMain5_³¯¾¾µ¥ÀÌÅÍÀúÀå {
 						bw.flush();
 					}
 
-				} else if (what == XmlPullParser.END_TAG)      { // </>ºÙÀº°Íµé
-					// System.out.println(xpp.getName()); // /»©°í ±ÛÀÚ¸¸ ³ª¿È
-					// --------XMLÆÄ½Ì ±âº»ÆĞÅÏ
+				} else if (what == XmlPullParser.END_TAG)      { // </>ë¶™ì€ê²ƒë“¤
+					// System.out.println(xpp.getName()); // /ë¹¼ê³  ê¸€ìë§Œ ë‚˜ì˜´
+					// --------XMLíŒŒì‹± ê¸°ë³¸íŒ¨í„´
 					tagName = "";
 
 				}
